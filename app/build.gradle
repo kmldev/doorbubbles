@@ -1,0 +1,117 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.laundry.bubbles'
+    
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
+    
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+    
+    compileSdk 34
+    defaultConfig {
+        applicationId "com.laundry.bubbles"
+        minSdk 23
+        targetSdk 34
+        versionCode 3
+        versionName "1.0.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    
+    signingConfigs {
+        release {
+            storeFile file("../app/Laundry.jks")
+            storePassword "android"
+            keyAlias "Laundry"
+            keyPassword "android"
+        }
+    }
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+dependencies {
+    // Permission handling
+    implementation 'com.github.permissions-dispatcher:permissionsdispatcher:4.9.2'
+    annotationProcessor 'com.github.permissions-dispatcher:permissionsdispatcher-processor:4.9.2'
+    
+    // AndroidX Core
+    implementation 'androidx.core:core-ktx:1.12.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.10.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    
+    // Testing
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.5.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    
+    // ViewPager and Indicators
+    implementation 'com.github.ToxicBakery.ViewPagerTransforms:view-pager-transforms:2.0.24'
+    implementation 'com.tbuonomo:dotsindicator:4.3'
+    
+    // Image Loading and Processing
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.isseiaoki:simplecropview:1.1.8'
+    implementation 'id.zelory:compressor:3.0.1'
+    
+    // Networking
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'org.jsoup:jsoup:1.16.1'
+    
+    // Google Services
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+    implementation 'com.google.android.libraries.places:places:3.2.0'
+    
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:32.3.1')
+    implementation 'com.google.firebase:firebase-messaging'
+    implementation 'com.google.firebase:firebase-analytics'
+    
+    // UI Components
+    implementation 'com.github.florent37:singledateandtimepicker:2.2.7'
+    implementation 'com.hbb20:ccp:2.7.0'
+    implementation 'com.intuit.sdp:sdp-android:1.1.0'
+    implementation 'com.google.android:flexbox:2.0.1'
+    implementation 'com.github.mahimrocky:TagView:1.0.3'
+    
+    // Room Database
+    implementation 'androidx.room:room-runtime:2.6.0'
+    annotationProcessor 'androidx.room:room-compiler:2.6.0'
+    testImplementation 'androidx.room:room-testing:2.6.0'
+    
+    // Phone Number Validation
+    implementation 'io.michaelrocks:libphonenumber-android:8.13.14'
+    
+    // Location Picker
+    implementation('com.github.schibstedspain:leku:8.0.0') {
+        exclude group: 'com.google.android.gms'
+    }
+}
